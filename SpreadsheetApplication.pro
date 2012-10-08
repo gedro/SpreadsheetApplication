@@ -10,11 +10,15 @@ INCLUDEPATH += .
 # Directories
 
 FORMS += \
-    gotocelldialog.ui
+    gotocelldialog.ui \
+    sortdialog.ui
 
 HEADERS += \
-    gotocelldialog.h
+    gotocelldialog.h \
+    sortdialog.h
 
 SOURCES += \
     gotocelldialog.cpp \
-    testGoToCellDialog.cpp
+    testGoToCellDialog.cpp \
+    sortdialog.cpp \
+    testSortDialog.cpp
