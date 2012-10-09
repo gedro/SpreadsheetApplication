@@ -15,10 +15,17 @@ FORMS += \
 
 HEADERS += \
     gotocelldialog.h \
-    sortdialog.h
+    sortdialog.h \
+    mainwindow.h \
+    finddialog.h
 
 SOURCES += \
     gotocelldialog.cpp \
     testGoToCellDialog.cpp \
     sortdialog.cpp \
-    testSortDialog.cpp
+    testSortDialog.cpp \
+    mainwindow.cpp \
+    finddialog.cpp
+
+RESOURCES += \
+    spreadsheet.qrc
