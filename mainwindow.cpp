@@ -121,4 +121,14 @@ void MainWindow::createMenus() {
     helpMenu->addAction(aboutQtAction);
 }
 
-
+/*
+ * A more sophisticated way of providing context menus is to
+ * reimplement the QWidget::contextMenuEvent() function,
+ * create a QMenu widget, populate it with the desired actions, and call exec() on it.
+ */
+void MainWindow::createContextMenu() {
+    spreadsheet->addAction(cutAction);
+    spreadsheet->addAction(copyAction);
+    spreadsheet->addAction(pasteAction);
+    spreadsheet->setContextMenuPolicy(Qt::ActionsContextMenu);
+}
