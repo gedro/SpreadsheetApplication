@@ -326,3 +326,13 @@ void MainWindow::find() {
         findDialog->activateWindow();
     }
 }
+
+void MainWindow::goToCell() {
+    GoToCellDialog dialog(this);
+
+    // GoToCellDialog will be modal because of calling of exec in front of show
+    if (dialog.exec()) {
+        QString str = dialog.lineEdit->text().toUpper();
+        spreadsheet->setCurrentCell(str.mid(1).toInt() - 1, str[0].unicode() - 'A');
+    }
+}
