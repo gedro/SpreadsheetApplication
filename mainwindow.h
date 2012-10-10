@@ -49,8 +49,10 @@ class MainWindow : public QMainWindow {
     private:
         Spreadsheet *spreadsheet;
         FindDialog *findDialog;
+
         QLabel *locationLabel;
         QLabel *formulaLabel;
+
         QStringList recentFiles;
         QString curFile;
 

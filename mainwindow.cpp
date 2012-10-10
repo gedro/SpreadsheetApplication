@@ -147,3 +147,31 @@ void MainWindow::createToolBars() {
     editToolBar->addAction(findAction);
     editToolBar->addAction(goToCellAction);
 }
+
+void MainWindow::createStatusBar() {
+    locationLabel = new QLabel(" W999 ");
+    locationLabel->setAlignment(Qt::AlignHCenter);
+    locationLabel->setMinimumSize(locationLabel->sizeHint());
+
+    formulaLabel = new QLabel;
+    formulaLabel->setIndent(3);
+
+    statusBar()->addWidget(locationLabel);
+    statusBar()->addWidget(formulaLabel, 1);
+
+    connect(spreadsheet, SIGNAL(currentCellChanged(int, int, int, int)),
+                   this, SLOT(updateStatusBar()));
+    connect(spreadsheet, SIGNAL(modified()),this, SLOT(spreadsheetModified()));
+
+    updateStatusBar();
+}
+
+void MainWindow::updateStatusBar() {
+    locationLabel->setText(spreadsheet->currentLocation());
+    formulaLabel->setText(spreadsheet->currentFormula());
+}
+
+void MainWindow::spreadsheetModified() {
+    setWindowModified(true);
+    updateStatusBar();
+}
