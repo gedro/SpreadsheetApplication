@@ -55,18 +55,26 @@ class MainWindow : public QMainWindow {
         QString curFile;
 
         enum { MaxRecentFiles = 5 };
-        QAction *recentFileActions[MaxRecentFiles];
-        QAction *separatorAction;
-
         QMenu *fileMenu;
         QMenu *editMenu;
-        //...
+        QMenu *selectSubMenu;
+        QMenu *toolsMenu;
+        QMenu *optionsMenu;
+        QMenu *helpMenu;
+
         QToolBar *fileToolBar;
         QToolBar *editToolBar;
+
         QAction *newAction;
         QAction *openAction;
-        //...
+        QAction *saveAction;
+        QAction *savesAsAction;
+        QAction *exitAction;
         QAction *aboutQtAction;
+        QAction *selectAllAction;
+        QAction *showGridAction;
+        QAction *recentFileActions[MaxRecentFiles];
+        QAction *separatorAction;
 };
 
 #endif // MAINWINDOW_H
