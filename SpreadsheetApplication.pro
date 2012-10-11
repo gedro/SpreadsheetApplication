@@ -25,7 +25,8 @@ SOURCES += \
     sortdialog.cpp \
     testSortDialog.cpp \
     mainwindow.cpp \
-    finddialog.cpp
+    finddialog.cpp \
+    main.cpp
 
 RESOURCES += \
     spreadsheet.qrc

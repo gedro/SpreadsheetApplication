@@ -4,9 +4,11 @@
 #include "gotocelldialog.h"
 #include "mainwindow.h"
 #include "sortdialog.h"
-#include "spreadsheet.h"
+//#include "spreadsheet.h"
 
 MainWindow::MainWindow() {
+    setAttribute(Qt::WA_DeleteOnClose);
+
     spreadsheet = new Spreadsheet;
     setCentralWidget(spreadsheet);
 
@@ -55,10 +57,15 @@ void MainWindow::createActions() {
         connect(recentFileActions[i], SIGNAL(triggered()), this, SLOT(openRecentFile()));
     }
 
+    closeAction = new QAction(tr("&Close"), this);
+    closeAction->setShortcut(QKeySequence::Close);
+    closeAction->setStatusTip(tr("Close this window"));
+    connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
+
     exitAction = new QAction(tr("E&xit"), this);
-    exitAction->setShortcut(QKeySequence::Quit);
+    exitAction->setShortcut(tr("Ctrl+Q"));
     exitAction->setStatusTip(tr("Exit the application"));
-    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+    connect(exitAction, SIGNAL(triggered()), qApp, SLOT(closeAllWindows()));
 
     selectAllAction = new QAction(tr("&All"), this);
     selectAllAction->setShortcut(QKeySequence::SelectAll);
@@ -177,10 +184,8 @@ void MainWindow::spreadsheetModified() {
 }
 
 void MainWindow::newFile() {
-    if (okToContinue()) {
-        spreadsheet->clear();
-        setCurrentFile("");
-    }
+    MainWindow *mainWin = new MainWindow;
+    mainWin->show();
 }
 
 bool MainWindow::okToContinue() {
@@ -267,7 +272,7 @@ void MainWindow::setCurrentFile(const QString &fileName) {
         shownName = strippedName(curFile);
         recentFiles.removeAll(curFile);
         recentFiles.prepend(curFile);
-        updateRecentFileActions();
+        updateRecentFileActionsForAllWindows();
     }
 
     setWindowTitle(tr("%1[*] - %2").arg(shownName)
@@ -276,6 +281,14 @@ void MainWindow::setCurrentFile(const QString &fileName) {
 
 QString MainWindow::strippedName(const QString &fullFileName) {
     return QFileInfo(fullFileName).fileName();
+}
+
+void MainWindow::updateRecentFileActionsForAllWindows() {
+    foreach (QWidget *win, QApplication::topLevelWidgets()) {
+        if (MainWindow *mainWin = qobject_cast<MainWindow *>(win)) {
+            mainWin->updateRecentFileActions();
+        }
+    }
 }
 
 void MainWindow::updateRecentFileActions() {
@@ -400,7 +413,7 @@ void MainWindow::readSettings() {
     restoreGeometry(settings.value("geometry").toByteArray());
 
     recentFiles = settings.value("recentFiles").toStringList();
-    updateRecentFileActions();
+    updateRecentFileActionsForAllWindows();
 
     bool showGrid = settings.value("showGrid", true).toBool();
     showGridAction->setChecked(showGrid);

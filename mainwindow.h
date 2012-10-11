@@ -44,6 +44,7 @@ class MainWindow : public QMainWindow {
         bool saveFile(const QString &fileName);
         void setCurrentFile(const QString &fileName);
         void updateRecentFileActions();
+        void updateRecentFileActionsForAllWindows();
         QString strippedName(const QString &fullFileName);
 
     private:
@@ -72,6 +73,7 @@ class MainWindow : public QMainWindow {
         QAction *saveAction;
         QAction *savesAsAction;
         QAction *exitAction;
+        QAction *closeAction;
         QAction *aboutQtAction;
         QAction *selectAllAction;
         QAction *showGridAction;
