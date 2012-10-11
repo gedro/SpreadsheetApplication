@@ -75,6 +75,7 @@ class MainWindow : public QMainWindow {
         QAction *aboutQtAction;
         QAction *selectAllAction;
         QAction *showGridAction;
+        QAction *autoRecalcAction;
         QAction *recentFileActions[MaxRecentFiles];
         QAction *separatorAction;
 };

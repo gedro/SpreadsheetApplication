@@ -377,3 +377,34 @@ void MainWindow::about() {
                "QStatusBar, QTableWidget, QToolBar, and many other "
                "Qt classes."));
 }
+
+void MainWindow::writeSettings() {
+    QSettings settings("Software Inc.", "Spreadsheet");
+
+    settings.setValue("geometry", saveGeometry());
+    settings.setValue("recentFiles", recentFiles);
+    settings.setValue("showGrid", showGridAction->isChecked());
+    settings.setValue("autoRecalc", autoRecalcAction->isChecked());
+
+    /*
+    settings.beginGroup("findDialog");
+    settings.setValue("matchCase", caseCheckBox->isChecked());
+    settings.setValue("searchBackward", backwardCheckBox->isChecked());
+    settings.endGroup();
+    */
+}
+
+void MainWindow::readSettings() {
+    QSettings settings("Software Inc.", "Spreadsheet");
+
+    restoreGeometry(settings.value("geometry").toByteArray());
+
+    recentFiles = settings.value("recentFiles").toStringList();
+    updateRecentFileActions();
+
+    bool showGrid = settings.value("showGrid", true).toBool();
+    showGridAction->setChecked(showGrid);
+
+    bool autoRecalc = settings.value("autoRecalc", true).toBool();
+    autoRecalcAction->setChecked(autoRecalc);
+}
