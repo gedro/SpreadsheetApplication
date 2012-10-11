@@ -367,3 +367,13 @@ void MainWindow::sort() {
     }
 }
 */
+
+void MainWindow::about() {
+    QMessageBox::about(this, tr("About Spreadsheet"),
+            tr("<h2>Spreadsheet 1.1</h2>"
+               "<p>Copyright &copy; 2008 Software Inc."
+               "<p>Spreadsheet is a small application that "
+               "demonstrates QAction, QMainWindow, QMenuBar, "
+               "QStatusBar, QTableWidget, QToolBar, and many other "
+               "Qt classes."));
+}
