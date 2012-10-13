@@ -4,7 +4,7 @@
 #include "gotocelldialog.h"
 #include "mainwindow.h"
 #include "sortdialog.h"
-//#include "spreadsheet.h"
+#include "spreadsheet.h"
 
 MainWindow::MainWindow() {
     setAttribute(Qt::WA_DeleteOnClose);

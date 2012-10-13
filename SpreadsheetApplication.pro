@@ -17,7 +17,8 @@ HEADERS += \
     gotocelldialog.h \
     sortdialog.h \
     mainwindow.h \
-    finddialog.h
+    finddialog.h \
+    spreadsheet.h
 
 SOURCES += \
     gotocelldialog.cpp \
@@ -26,7 +27,8 @@ SOURCES += \
     testSortDialog.cpp \
     mainwindow.cpp \
     finddialog.cpp \
-    main.cpp
+    main.cpp \
+    spreadsheet.cpp
 
 RESOURCES += \
     spreadsheet.qrc
