@@ -45,11 +45,11 @@ void MainWindow::createActions() {
     saveAction->setStatusTip(tr("Save the spreadsheet file"));
     connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
 
-    savesAsAction = new QAction(tr("Save as"), this);
-    savesAsAction->setIcon(QIcon(":/images/saveas.png"));
-    savesAsAction->setShortcut(QKeySequence::SaveAs);
-    savesAsAction->setStatusTip(tr("Save as ... the spreadsheet file"));
-    connect(savesAsAction, SIGNAL(triggered()), this, SLOT(saveAs()));
+    saveAsAction = new QAction(tr("Save as"), this);
+    saveAsAction->setIcon(QIcon(":/images/saveas.png"));
+    saveAsAction->setShortcut(QKeySequence::SaveAs);
+    saveAsAction->setStatusTip(tr("Save as ... the spreadsheet file"));
+    connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveAs()));
 
     for (int i = 0; i < MaxRecentFiles; ++i) {
         recentFileActions[i] = new QAction(this);
@@ -350,6 +350,7 @@ void MainWindow::goToCell() {
     }
 }
 
+/*
 void MainWindow::sort() {
     SortDialog dialog(this);
     QTableWidgetSelectionRange range = spreadsheet->selectedRange();
@@ -360,8 +361,8 @@ void MainWindow::sort() {
         spreadsheet->performSort(dialog.comparisonObject());
     }
 }
+*/
 
-/*
 void MainWindow::sort() {
     SortDialog dialog(this);
     QTableWidgetSelectionRange range = spreadsheet->selectedRange();
@@ -379,7 +380,6 @@ void MainWindow::sort() {
         spreadsheet->sort(compare);
     }
 }
-*/
 
 void MainWindow::about() {
     QMessageBox::about(this, tr("About Spreadsheet"),

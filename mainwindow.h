@@ -12,7 +12,7 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
     public:
-        explicit MainWindow(QWidget *parent = 0);
+        //explicit MainWindow(QWidget *parent = 0);
         MainWindow();
 
     protected:
@@ -71,15 +71,26 @@ class MainWindow : public QMainWindow {
         QAction *newAction;
         QAction *openAction;
         QAction *saveAction;
-        QAction *savesAsAction;
+        QAction *saveAsAction;
         QAction *exitAction;
         QAction *closeAction;
         QAction *aboutQtAction;
+        QAction *aboutAction;
+        QAction *selectRowAction;
+        QAction *selectColumnAction;
         QAction *selectAllAction;
         QAction *showGridAction;
         QAction *autoRecalcAction;
         QAction *recentFileActions[MaxRecentFiles];
         QAction *separatorAction;
+        QAction *cutAction;
+        QAction *copyAction;
+        QAction *pasteAction;
+        QAction *deleteAction;
+        QAction *findAction;
+        QAction *goToCellAction;
+        QAction *recalculateAction;
+        QAction *sortAction;
 };
 
 #endif // MAINWINDOW_H
